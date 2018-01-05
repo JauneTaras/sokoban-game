@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package sokoban;
+
+import java.io.FileNotFoundException;
 import javax.swing.*;
 /**
  *
@@ -11,14 +13,26 @@ import javax.swing.*;
  */
 public class SokobanGame {
     
+      public static void loadLevel(int levelNumber) throws FileNotFoundException {
       
+          Level.loadMap(levelNumber);
+      
+      }
         
-      SokobanGame(){
+      SokobanGame() throws FileNotFoundException {
+          
        JFrame mainWindow = new JFrame();
         
         mainWindow.setSize(500,500);
         mainWindow.setVisible(true);
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+         Level testLevel = new Level();
+         
+         SokobanGame.loadLevel(3);
+     
+         
+        
       }  
         
         
