@@ -5,35 +5,38 @@
  */
 package sokoban;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 import javax.swing.*;
+
 /**
  *
  * @author Jaune
  */
-public class SokobanGame {
-    
-      public static void loadLevel(int levelNumber) throws FileNotFoundException {
-      
-          Level.loadMap(levelNumber);
-      
-      }
-        
-      SokobanGame() throws FileNotFoundException {
-          
-       JFrame mainWindow = new JFrame();
-        
-        mainWindow.setSize(500,500);
-        mainWindow.setVisible(true);
-        mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        
-         Level testLevel = new Level();
-         
-         SokobanGame.loadLevel(3);
+public class SokobanGame extends Sokoban {
+   
+
      
-         
+      public void loadLevel(int mapNumber) throws FileNotFoundException {
+          
+    
+       Level currentLevel = new Level();
+       currentLevel.loadMap(mapNumber);
+       
         
-      }  
+      
+      
+   
+     }
+
+    
+
+    SokobanGame() throws FileNotFoundException {
+
         
-        
+ 
+      }       
 }

@@ -5,7 +5,6 @@
  */
 package sokoban;
 
-
 import java.io.FileNotFoundException;
 import javax.swing.*;
 /**
@@ -14,19 +13,20 @@ import javax.swing.*;
  */
 public class Sokoban {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws FileNotFoundException {
-        // TODO code application logic here
+       
         
-        
-        SokobanGame game = new SokobanGame();
-        
-     
+      //  MapElement currentMap = new MapElement();
 
-      
+        SokobanGame game = new SokobanGame();
+        game.loadLevel(1);
         
+        Graphics gui = new Graphics();
+        gui.loadFrame();
+        gui.loadButtons();
+        gui.loadTileGrid();
     }
+    
+    
     
 }
