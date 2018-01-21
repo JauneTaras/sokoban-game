@@ -17,9 +17,8 @@ public class Floor  extends MapElement  {
     return imageLocation;
     }
     
-    Floor(int x, int y) throws FileNotFoundException{
-    
-        int xCoord = x;
-        int yCoord = y;
+    Floor(String name) throws FileNotFoundException{
+    super(name);
+      
     }
 }

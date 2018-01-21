@@ -15,8 +15,8 @@ public class Crate extends MoveableMapElement {
  
     
     
-    Crate() throws FileNotFoundException{
-    
+    Crate(String name) throws FileNotFoundException{
+     super(name);
       
     }
 }

@@ -18,15 +18,8 @@ public class Diamond extends MapElement {
     return imageLocation;
     }
     
-
-    Diamond(int x, int y)throws FileNotFoundException{
-        
-       
-        int xCoord = x;
-        int yCoord = y;
-        
-        
-        
+    public Diamond(String name) throws FileNotFoundException {
+        super(name);
     }
         
 }

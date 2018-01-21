@@ -5,23 +5,37 @@
  */
 package sokoban;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 
 public class Wall extends MapElement {
     
-     String imageLocation = "SokobanImages/Wall.jpg";
+  /*   BufferedImage wallIcon = null; 
     
-    public String getImageLocation(){
+    String imageLocation = "SokobanImages/Wall.jpg";
     
-    return imageLocation;
+   public void CreateImage(){
+           
+   try{
+   wallIcon = ImageIO.read(new File(imageLocation));
+   }catch(IOException e){   }
+       
     }
+   
+   public BufferedImage returnImage(){
+   return wallIcon;   
+   }*/
+   
+    Wall(String name)throws FileNotFoundException{
+     super(name);
     
-    Wall(int x, int y)throws FileNotFoundException{
-    
-        int xCoord = x;
-        int yCoord = y;
-        
     }
     
 }

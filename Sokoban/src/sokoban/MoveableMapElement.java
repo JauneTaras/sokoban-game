@@ -10,8 +10,8 @@ import java.io.FileNotFoundException;
 
 public class MoveableMapElement extends MapElement {
     
-    MoveableMapElement()throws FileNotFoundException{
-    
+    MoveableMapElement(String name)throws FileNotFoundException{
+     super(name);
       
     }
     

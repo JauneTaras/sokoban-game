@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 //import static sokoban.SokobanGame.map;
@@ -16,21 +17,18 @@ import javax.swing.JPanel;
  */
 public class Level extends SokobanGame{
     
-          MapElement map[][] =  new MapElement[20][25];
-          WarehouseKeeper warehouseKeeper;
-          Crate crates[] = new Crate[20];
-         private BufferedImage image;
-             JLabel lbl = new JLabel();
-       
-        
-        
+         WarehouseKeeper warehouseKeeper;
+         Crate crates[] = new Crate[20];
+         int numberOfMoves;
+         JLabel numberOfMovesLabel;
+         JButton restartLevelButton;
+         MapElement map[][] =  new MapElement[20][25];
+
     
   public void loadMap(int mapNumber) throws FileNotFoundException{
       
-     
-//creating File instance to reference text file in Java
-         
-           File text = new File("levels/level"+ mapNumber +".txt");
+  
+        File text = new File("levels/level"+ mapNumber +".txt");
          // Levels 1-5 are saved as levels/level[1-5].txt
 
          //Creating Scanner instnace to read File in Java
@@ -60,44 +58,43 @@ public class Level extends SokobanGame{
        
       
         //Creating an MapElement array and populating it with gameplay Objects
-     for (int k = 0; k < lineNumber; k++){
+        
+    
+        for (int k = 0; k < lineNumber; k++){
          for (int l = 0; l < lineLength; l++){
              char item =  charMap[k][l];
              String icon = null;
              if (item == ' '){
-                 map[k][l] = new Floor(k,l);
-                 map[k][l].loadImage("Floor", k, l);
-                 lbl = map[k][l].getImage();
-                           }
+                 map[k][l] = new Floor("Floor");}
              else if (item == 'X'){
-                map[k][l] = new Wall(k,l);
-               map[k][l].loadImage("Wall", k, l);
-               lbl = map[k][l].getImage();
-                          
-             }
+                map[k][l] = new Wall("Wall");}
              else if (item == '*'){
-                crates[k] = new Crate();
-                map[k][l] = crates[k];
-              crates[k].loadImage("Crate", k, l);
-              lbl = crates[k].getImage();
-                        }
+                map[k][l] = new Crate("Crate");}
              else if (item == '.'){
-                map[k][l] = new Diamond(k,l);
-             map[k][l].loadImage("Diamond", k, l);
-             lbl = map[k][l].getImage();
-                      }
+                map[k][l] = new Diamond("Diamond");}
              else if (item == '@'){
-                this.warehouseKeeper = new WarehouseKeeper(k, l);
-                warehouseKeeper.loadImage("WarehouseKeeper", k, l);
-                lbl = warehouseKeeper.getImage();
-                        }
-            System.out.println(map[k][l]);         }     
+              map[k][l] = new WarehouseKeeper("WarehouseKeeper");}
+            System.out.println(map[k][l]);  }}}     
+ 
+  
+    public void checkForWin(){}
      
-     }
+    public void displayMap(){
+    
+          for(int i=0; i<map.length; i++) {
+        for(int j=0; j<map[i].length; j++){
             
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/sokobanImages/Floor.png"));
+        JLabel tileImage = new JLabel(icon);
+        GraphicsUI.loadTileGrid(tileImage);
+        }}
+    
+    
+    
+    }
+    public void restartLevel(){}
             
-                    
-  }
+           
     Level() throws FileNotFoundException{
        
      

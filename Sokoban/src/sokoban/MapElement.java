@@ -31,30 +31,21 @@ import javax.swing.JLabel;
  */
 public class MapElement extends Level{
     
-    JLabel lbl = new JLabel();
-    
-     public JLabel getImage(){
-        return lbl;
-    }
-    
-    public void loadImage(String type, int x, int y){
-     
-       ImageIcon iconImg = new ImageIcon("C:/Users/Jaune/Documents/NetBeansProjects/Sokoban/sokobanImages/" + type + ".png", type + " image icon");  
-       if (!(iconImg == null)){
-           //System.out.println(iconImg.getIconHeight());
-       } else {
-       }
-       lbl.setIcon(iconImg);
-       lbl.setFont(new Font("Verdana", 1, 20));
-       lbl.setSize(lbl.getPreferredSize());
-       lbl.setLocation(x*10, y*10);
-        
-    }
-    
+   BufferedImage imgIcon = null;  
+  String imageLocation = "SokobanImages/";
    
+   public void createImage(String type){
+           
+   try{
+   imgIcon = ImageIO.read(new File(imageLocation+type+".jpg"));
+   }catch(IOException e){   }  
+   
+   GameGrid.returnImg(imgIcon);
+    }
    
     
-    MapElement()throws FileNotFoundException{}
+    MapElement(String name)throws FileNotFoundException{
 
+    this.createImage(name);}
 }
 

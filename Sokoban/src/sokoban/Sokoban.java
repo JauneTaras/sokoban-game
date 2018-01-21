@@ -21,10 +21,10 @@ public class Sokoban {
         SokobanGame game = new SokobanGame();
         game.loadLevel(1);
         
-        Graphics gui = new Graphics();
+        GraphicsUI gui = new GraphicsUI();
         gui.loadFrame();
         gui.loadButtons();
-        gui.loadTileGrid();
+       
     }
     
     

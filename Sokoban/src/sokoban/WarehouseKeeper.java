@@ -18,11 +18,9 @@ public class WarehouseKeeper extends MoveableMapElement {
     return imageLocation;}
     
     
-       WarehouseKeeper(int x, int y) throws FileNotFoundException{
-    
+       WarehouseKeeper(String name) throws FileNotFoundException{
+     super(name);
        
-        int xCoord = x;
-        int yCoord = y;
-    }
+       }
     
 }
