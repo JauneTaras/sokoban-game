@@ -29,7 +29,7 @@ public class GraphicsUI extends JPanel {
     
     public JFrame mainWindow = new JFrame("Sokoban");
     GridLayout guiGrid = new GridLayout(5,1);
-    GridLayout tileGrid = new GridLayout(25,25,1,1);
+   static GridLayout tileGrid;
     JPanel mainPanel = new JPanel();
     JPanel guiPanel = new JPanel(guiGrid);  
     static JPanel tilePanel = new JPanel();
@@ -37,7 +37,7 @@ public class GraphicsUI extends JPanel {
      
      public void loadFrame(){
      
-        mainWindow.setSize(700,700);
+        mainWindow.setSize(900,900);
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         
         mainPanel.setLayout(new GridBagLayout()); 
@@ -45,7 +45,10 @@ public class GraphicsUI extends JPanel {
        guiPanel.setPreferredSize(new Dimension(200,200));
         mainPanel.add(guiPanel); 
         
-        tilePanel.setPreferredSize(new Dimension(675,500));
+       tileGrid = new GridLayout(Level.returnLineNumber(), Level.returnLineLength()); 
+     
+       tilePanel.setLayout(tileGrid);
+         tilePanel.setPreferredSize(tilePanel.getPreferredSize());
         mainPanel.add(tilePanel);
         
         mainWindow.add(mainPanel);
@@ -73,7 +76,7 @@ public class GraphicsUI extends JPanel {
      }
      
      public static void loadTileGrid (JLabel imgLabel){
-         
+    
      tilePanel.add(imgLabel);
      }
      

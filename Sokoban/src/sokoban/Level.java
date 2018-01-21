@@ -22,7 +22,9 @@ public class Level extends SokobanGame{
          int numberOfMoves;
          JLabel numberOfMovesLabel;
          JButton restartLevelButton;
-         MapElement map[][] =  new MapElement[20][25];
+         MapElement map[][];
+       static int lineNumber;
+         static int lineLength;
 
     
   public void loadMap(int mapNumber) throws FileNotFoundException{
@@ -36,7 +38,7 @@ public class Level extends SokobanGame{
 
          String[] levelMapLines = new String[20];
          //Reading each line of file using Scanner class
-         int lineNumber = 0;
+        lineNumber = 0;
          while(scnr.hasNextLine()){
              String line = scnr.nextLine();
            levelMapLines[lineNumber] = line;
@@ -44,12 +46,12 @@ public class Level extends SokobanGame{
              lineNumber++;}
 
         char temp; 
-        int lineLength = levelMapLines[0].length();
+        lineLength = levelMapLines[0].length();
         //Assumming that every line in each level will be the same length, 
         //which is true in the provided 5 levels but might not be in the future
 
        //Creating a character array and populating it with the characters used to draw a level
-       char[][] charMap = new char[20][25];   
+       char[][] charMap = new char[lineNumber][lineLength];   
        for (int i = 0; i < lineNumber; i++){
          for (int j = 0; j < lineLength; j++){
              temp = levelMapLines[i].charAt(j);
@@ -58,7 +60,7 @@ public class Level extends SokobanGame{
        
       
         //Creating an MapElement array and populating it with gameplay Objects
-        
+         map = new  MapElement[lineNumber][lineLength];
     
         for (int k = 0; k < lineNumber; k++){
          for (int l = 0; l < lineLength; l++){
@@ -74,17 +76,52 @@ public class Level extends SokobanGame{
                 map[k][l] = new Diamond("Diamond");}
              else if (item == '@'){
               map[k][l] = new WarehouseKeeper("WarehouseKeeper");}
-            System.out.println(map[k][l]);  }}}     
+            System.out.println(map[k][l]);  }}
+   System.out.println(lineNumber);
+    System.out.println(lineLength);
+  
+  }     
  
   
     public void checkForWin(){}
+    
+    public static int returnLineNumber(){
+    
+        return lineNumber;
+    }
+    
+     public static int returnLineLength(){
+    
+        return lineLength;
+    }
      
     public void displayMap(){
+        
+        
     
           for(int i=0; i<map.length; i++) {
         for(int j=0; j<map[i].length; j++){
             
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/sokobanImages/Floor.png"));
+        String typeImage; 
+        if (map[i][j] instanceof Floor){
+        typeImage = "Floor.png";
+        } 
+        else if (map[i][j] instanceof Crate){
+        typeImage = "Crate.png";
+        }
+        else if (map[i][j] instanceof Wall){
+        typeImage = "Wall.png";
+        }
+        else if (map[i][j] instanceof Diamond){
+        typeImage = "Diamond.png";
+        }
+        else if (map[i][j] instanceof WarehouseKeeper){
+        typeImage = "WarehouseKeeper.png";
+        }
+        //Indicates the array space is empty
+        else typeImage = "CrateInPlace.png";
+                
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/sokobanImages/" + typeImage));
         JLabel tileImage = new JLabel(icon);
         GraphicsUI.loadTileGrid(tileImage);
         }}
