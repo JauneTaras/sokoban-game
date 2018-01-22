@@ -17,25 +17,26 @@ import javax.swing.*;
  * @author Jaune
  */
 public class SokobanGame extends Sokoban {
-   
-     
     
-     
-      public void loadLevel(int mapNumber) throws FileNotFoundException {
+
+        
+     public void loadLevel(int mapNumber) throws FileNotFoundException {
           
-     Level currentLevel = new Level();  
+     Level currentLevel = new Level();
      currentLevel.loadMap(mapNumber);
      currentLevel.displayMap();
    
      }
 
+      public static void newMove(Level currentLevel){
+              
+     currentLevel.displayMap();
+      
+      }
     
-      
-      
 
-    SokobanGame() throws FileNotFoundException {
+   public SokobanGame() throws FileNotFoundException {
 
-     
- 
+
       }       
 }

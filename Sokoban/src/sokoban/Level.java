@@ -17,14 +17,14 @@ import javax.swing.JPanel;
  */
 public class Level extends SokobanGame{
     
-         WarehouseKeeper warehouseKeeper;
-         Crate crates[] = new Crate[20];
-         int numberOfMoves;
-         JLabel numberOfMovesLabel;
-         JButton restartLevelButton;
-         MapElement map[][];
-       static int lineNumber;
-         static int lineLength;
+       static WarehouseKeeper currentWarehouseKeeper;
+        Crate crates[] = new Crate[20];
+        int numberOfMoves;
+        JLabel numberOfMovesLabel;
+        JButton restartLevelButton;
+       static MapElement map[][];
+        static int lineNumber;
+        static int lineLength;
 
     
   public void loadMap(int mapNumber) throws FileNotFoundException{
@@ -67,15 +67,18 @@ public class Level extends SokobanGame{
              char item =  charMap[k][l];
              String icon = null;
              if (item == ' '){
-                 map[k][l] = new Floor("Floor");}
+                 map[k][l] = new Floor(k,l);}
              else if (item == 'X'){
-                map[k][l] = new Wall("Wall");}
+                map[k][l] = new Wall(k,l);}
              else if (item == '*'){
-                map[k][l] = new Crate("Crate");}
+                map[k][l] = new Crate(k,l);}
              else if (item == '.'){
-                map[k][l] = new Diamond("Diamond");}
+                map[k][l] = new Diamond(k,l);}
              else if (item == '@'){
-              map[k][l] = new WarehouseKeeper("WarehouseKeeper");}
+                map[k][l] = new WarehouseKeeper(k,l);
+                currentWarehouseKeeper = (WarehouseKeeper)map[k][l];
+                System.out.println(currentWarehouseKeeper.xCoord);
+             }
             System.out.println(map[k][l]);  }}
    System.out.println(lineNumber);
     System.out.println(lineLength);
@@ -96,43 +99,53 @@ public class Level extends SokobanGame{
     }
      
     public void displayMap(){
+
+        GraphicsUI.clearTileGrid();
         
-        
-    
-          for(int i=0; i<map.length; i++) {
-        for(int j=0; j<map[i].length; j++){
-            
-        String typeImage; 
-        if (map[i][j] instanceof Floor){
-        typeImage = "Floor.png";
-        } 
-        else if (map[i][j] instanceof Crate){
-        typeImage = "Crate.png";
-        }
-        else if (map[i][j] instanceof Wall){
-        typeImage = "Wall.png";
-        }
-        else if (map[i][j] instanceof Diamond){
-        typeImage = "Diamond.png";
-        }
-        else if (map[i][j] instanceof WarehouseKeeper){
-        typeImage = "WarehouseKeeper.png";
-        }
-        //Indicates the array space is empty
-        else typeImage = "CrateInPlace.png";
-                
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/sokobanImages/" + typeImage));
-        JLabel tileImage = new JLabel(icon);
-        GraphicsUI.loadTileGrid(tileImage);
+        for(int i=0; i<map.length; i++) {
+            for(int j=0; j<map[i].length; j++){            
+                String typeImage; 
+                if (map[i][j] instanceof Floor){
+                typeImage = "Floor.png";
+                } 
+                else if (map[i][j] instanceof Crate){
+                typeImage = "Crate.png";
+                }
+                else if (map[i][j] instanceof Wall){
+                typeImage = "Wall.png";
+                }
+                else if (map[i][j] instanceof Diamond){
+                typeImage = "Diamond.png";
+                }
+                else if (map[i][j] instanceof WarehouseKeeper){
+                typeImage = "WarehouseKeeper.png";
+                }
+                //Indicates the array space is empty
+                else typeImage = "CrateInPlace.png";
+
+                ImageIcon icon = new ImageIcon(this.getClass().getResource("/sokobanImages/" + typeImage));
+                JLabel tileImage = new JLabel(icon);
+                GraphicsUI.loadTileGrid(tileImage);
+               
         }}
+        System.out.println("display");
     
     
     
     }
-    public void restartLevel(){}
-            
+    public void restartLevel() throws FileNotFoundException{
+    
+        super.loadLevel(1);
+    
+    }
+   
+    public static void moveWarehouseKeeper(String direction) throws FileNotFoundException{
+    
+        currentWarehouseKeeper.moveElement(direction);
+    
+    }
            
-    Level() throws FileNotFoundException{
+   public Level() throws FileNotFoundException{
        
      
     }

@@ -10,16 +10,53 @@ import java.io.FileNotFoundException;
 
 public class WarehouseKeeper extends MoveableMapElement {
     
-     String imageLocation = "SokobanImages/WarehouseKeeper.jpg";
+     int collumns = 1;
+     int rows = 1;
+     
+     public void move(String direction){
+            MapElement tempElement = null;
+            
+        if ("up".equals(direction)){
+        System.out.println("up detected");
+            if (map[collumns-1][rows]instanceof Wall) {
+                 System.out.println("wall up detected");
+                      }
+            
+            else { tempElement = map[collumns-1][rows];
+           
+            map[collumns-1][rows] = currentWarehouseKeeper;
+            map[collumns][rows] = tempElement;
+            super.displayMap();   
+            collumns = collumns-1;}
+            
+          
+       } 
+         
+       
+        }
 
-
-    public String getImageLocation(){
     
-    return imageLocation;}
-    
-    
-       WarehouseKeeper(String name) throws FileNotFoundException{
-     super(name);
+//    public void setXCoord(int newX){
+//    xCoord = newX;}
+//     
+//    public void setYCoord(int newY){
+//    yCoord = newY;
+//    }
+//     
+//    public int returnXCoord(){
+//     
+//     return xCoord;
+//     }
+//     
+//     public int returnYCoord(){
+//     
+//     return yCoord;
+//     }
+     
+       public WarehouseKeeper(int y, int x) throws FileNotFoundException{
+           super(x,y);
+        collumns = y;
+        rows = x;
        
        }
     

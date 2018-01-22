@@ -9,14 +9,30 @@ import java.io.FileNotFoundException;
 
 
 public class Crate extends MoveableMapElement {
+     private int xCoord;
+    private int yCoord;
+
     
-     String imageLocation = "SokobanImages/Crate.jpg";
-    
- 
-    
-    
-    Crate(String name) throws FileNotFoundException{
-     super(name);
+     public void setXCoord(){}
+     
+     public void setYCoord(){}
+     
+     public int returnXCoord(){
+     
+     return xCoord;
+     }
+     
+     public int returnYCoord(){
+     
+     return yCoord;
+     }
+     
+     
+    public Crate(int x, int y ) throws FileNotFoundException{
+        super(x,y);
+         xCoord = x;
+        yCoord = y;
+       
       
     }
 }

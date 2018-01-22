@@ -10,16 +10,14 @@ import java.io.FileNotFoundException;
 
 
 public class Diamond extends MapElement {
-    
-    String imageLocation = "SokobanImages/Diamond.jpg";
-    
-    public String getImageLocation(){
-    
-    return imageLocation;
-    }
-    
-    public Diamond(String name) throws FileNotFoundException {
-        super(name);
+        int xCoord;
+     int yCoord;
+  
+    public Diamond(int x,int y) throws FileNotFoundException {
+          super(x,y);
+           xCoord = x;
+           yCoord = y;
+       
     }
         
 }

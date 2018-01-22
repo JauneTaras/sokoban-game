@@ -9,16 +9,14 @@ import java.io.FileNotFoundException;
 
 
 public class Floor  extends MapElement  {
+    int xCoord;
+     int yCoord;
+  
     
-     String imageLocation = "SokobanImages/Floor.jpg";
-    
-    public String getImageLocation(){
-    
-    return imageLocation;
-    }
-    
-    Floor(String name) throws FileNotFoundException{
-    super(name);
+    Floor(int x , int y ) throws FileNotFoundException{
+    super(x,y);
+    xCoord = x;
+    yCoord = y;
       
     }
 }

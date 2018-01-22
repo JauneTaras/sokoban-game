@@ -11,22 +11,24 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import static java.awt.PageAttributes.ColorType.COLOR;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import java.awt.image.*;
+import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
  *
  * @author 16003841
  */
-public class GraphicsUI extends JPanel {
+public class GraphicsUI extends JPanel implements ActionListener {
    
-
-    
     public JFrame mainWindow = new JFrame("Sokoban");
     GridLayout guiGrid = new GridLayout(5,1);
    static GridLayout tileGrid;
@@ -59,14 +61,45 @@ public class GraphicsUI extends JPanel {
      
      public void loadButtons(){
      
-     JButton resetLevelButton = new JButton("Reset Level");  
+     JButton resetLevelButton = new JButton("Reset Level"); 
+      resetLevelButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            System.out.println("reset level");
+         }});
      guiPanel.add(resetLevelButton);
      mainWindow.setVisible(true);
      
      JButton moveUpButton = new JButton("Up");
+     moveUpButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             try {
+                 Level.moveWarehouseKeeper("up");
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(GraphicsUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             }
+            System.out.println("move up");
+            
+         }});
+         
+  
      JButton moveLeftButton = new JButton("Left");
+      moveLeftButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             System.out.println("move left");
+         }});
+      
+      
      JButton moveRightButton = new JButton("Right");
+      moveRightButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             System.out.println("move right");
+         }});
+      
      JButton moveDownButton = new JButton("Down");
+     moveDownButton.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+             System.out.println("move down");
+         }});
      
      guiPanel.add(moveUpButton);
      guiPanel.add(moveLeftButton);
@@ -80,6 +113,13 @@ public class GraphicsUI extends JPanel {
      tilePanel.add(imgLabel);
      }
      
+     public static void clearTileGrid(){
+     
+         tilePanel.removeAll();
+         tilePanel.revalidate();
+     
+     }
+     
 
   
      
@@ -87,6 +127,11 @@ public class GraphicsUI extends JPanel {
          
                 
      }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

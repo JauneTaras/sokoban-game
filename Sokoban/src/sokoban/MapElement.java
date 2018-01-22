@@ -30,22 +30,13 @@ import javax.swing.JLabel;
  * @author Jaune
  */
 public class MapElement extends Level{
-    
-   BufferedImage imgIcon = null;  
-  String imageLocation = "SokobanImages/";
-   
-   public void createImage(String type){
-           
-   try{
-   imgIcon = ImageIO.read(new File(imageLocation+type+".jpg"));
-   }catch(IOException e){   }  
-   
-   GameGrid.returnImg(imgIcon);
-    }
-   
-    
-    MapElement(String name)throws FileNotFoundException{
+     int xCoord;
+     int yCoord;
 
-    this.createImage(name);}
+   public MapElement(int x, int y)throws FileNotFoundException{
+        
+       xCoord = x;
+        yCoord = y;
+    }
 }
 

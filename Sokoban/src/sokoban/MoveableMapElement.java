@@ -9,9 +9,28 @@ import java.io.FileNotFoundException;
 
 
 public class MoveableMapElement extends MapElement {
+    private int collumns;
+    private int rows;
     
-    MoveableMapElement(String name)throws FileNotFoundException{
-     super(name);
+    
+    public void moveElement(String direction) throws FileNotFoundException{
+        
+        if (this instanceof WarehouseKeeper){
+        
+        currentWarehouseKeeper.move(direction);
+        
+            
+        }
+ 
+   
+       
+   
+    }
+    
+   public MoveableMapElement(int y, int x )throws FileNotFoundException{
+       super(x,y);
+   collumns = y;
+   rows = x;
       
     }
     

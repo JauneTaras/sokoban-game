@@ -17,25 +17,14 @@ import javax.swing.ImageIcon;
 
 public class Wall extends MapElement {
     
-  /*   BufferedImage wallIcon = null; 
-    
-    String imageLocation = "SokobanImages/Wall.jpg";
-    
-   public void CreateImage(){
-           
-   try{
-   wallIcon = ImageIO.read(new File(imageLocation));
-   }catch(IOException e){   }
-       
-    }
+ int xCoord;
+     int yCoord;
    
-   public BufferedImage returnImage(){
-   return wallIcon;   
-   }*/
-   
-    Wall(String name)throws FileNotFoundException{
-     super(name);
+    Wall(int x, int y)throws FileNotFoundException{
+    super(x,y);
     
+     xCoord = x;
+    yCoord = y;
     }
     
 }
